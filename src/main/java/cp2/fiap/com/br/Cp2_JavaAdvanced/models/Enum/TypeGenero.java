@@ -7,5 +7,9 @@ public enum TypeGenero {
     JOSEI,
     ISEKAI,
     ROMANCE,
-    AVENTURA, TERROR, COMEDIA, DRAMA, FANTASIA
+    AVENTURA,
+    TERROR,
+    COMEDIA,
+    DRAMA,
+    FANTASIA
 }

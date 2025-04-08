@@ -7,8 +7,7 @@ import cp2.fiap.com.br.Cp2_JavaAdvanced.models.Episodios;
 import cp2.fiap.com.br.Cp2_JavaAdvanced.models.Rank;
 import cp2.fiap.com.br.Cp2_JavaAdvanced.models.Season;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDate;
@@ -18,28 +17,44 @@ public class AnimeRequest {
 
     @NotBlank(message = "O Titulo é obrigatório")
     @Size(min = 3, max = 250, message = "O nome deve ter entre 3 e 150 caracteres")
+    @Column(name = "titulo", nullable = false, length = 255)
     private String Titulo;
+    @Max(value = 100,message = "A quantidade máxima de temporadas é de 100")
+    @Min(value = 1,message = "A quantidade mínima de temporadas é 1")
+    @NotBlank(message = "A quantidades de temporadas é obrigatório")
     private int Temporada;
+    @Size(min = 2,max = 3000, message = "A descrição deve ter no mínimo 2 caracteres e no máximo 3000")
+    @NotBlank(message = "A descrição é obrigatória")
     private String descricao;
-    private LocalDate DataDeLançamento;
+    @Past(message = "A data inserida deve estar no passado")
+    @NotBlank(message = "A data de lançamento é obrigatória")
+    private LocalDate DataDeLancamento;
+    @PastOrPresent(message = "A data inserida deve estar no passado ou presente")
+    @NotNull(message = "A data de termino é obrigatória")
     private LocalDate DataDeTermino;
+    @NotNull(message = "O estúdio é obrigatório")
     private TypeStudio studio;
+    @NotNull(message = "O status do anime é obrigatório")
     private StatusAnime status;
+    @NotNull(message = "O genero do anime é obrigatório")
     private List<TypeGenero> generoList;
+    @NotNull(message = "Os episódios são obrigatório")
     private Episodios episodios;
+    @NotNull(message = "A season do anime é obrigatória")
     private Season seasonal;
+    @NotNull(message = "O do anime é obrigatório obrigatório")
     private Rank rank;
 
 
     public AnimeRequest() {
     }
 
-    public AnimeRequest(String titulo, int temporada, String descricao, LocalDate dataDeLançamento, LocalDate dataDeTermino, TypeStudio studio, StatusAnime status, List<TypeGenero> generoList, Episodios episodios, Season seasonal, Rank rank) {
-        Titulo = titulo;
-        Temporada = temporada;
+    public AnimeRequest(String titulo, int temporada, String descricao, LocalDate dataDeLancamento, LocalDate dataDeTermino, TypeStudio studio, StatusAnime status, List<TypeGenero> generoList, Episodios episodios, Season seasonal, Rank rank) {
+        this.Titulo = titulo;
+        this.Temporada = temporada;
         this.descricao = descricao;
-        DataDeLançamento = dataDeLançamento;
-        DataDeTermino = dataDeTermino;
+        this.DataDeLancamento = dataDeLancamento;
+        this.DataDeTermino = dataDeTermino;
         this.studio = studio;
         this.status = status;
         this.generoList = generoList;
@@ -72,12 +87,12 @@ public class AnimeRequest {
         this.descricao = descricao;
     }
 
-    public LocalDate getDataDeLançamento() {
-        return DataDeLançamento;
+    public LocalDate getDataDeLancamento() {
+        return DataDeLancamento;
     }
 
-    public void setDataDeLançamento(LocalDate dataDeLançamento) {
-        DataDeLançamento = dataDeLançamento;
+    public void setDataDeLancamento(LocalDate dataDeLancamento) {
+        DataDeLancamento = dataDeLancamento;
     }
 
     public LocalDate getDataDeTermino() {

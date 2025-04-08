@@ -1,5 +1,7 @@
 package cp2.fiap.com.br.Cp2_JavaAdvanced.controller;
 
+import cp2.fiap.com.br.Cp2_JavaAdvanced.dto.AnimeRequest;
+import cp2.fiap.com.br.Cp2_JavaAdvanced.dto.AnimeResponse;
 import cp2.fiap.com.br.Cp2_JavaAdvanced.models.Anime;
 import cp2.fiap.com.br.Cp2_JavaAdvanced.service.AnimeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,20 +10,62 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.antlr.v4.runtime.misc.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import java.util.Optional;
 
-@Controller
-@RequestMapping(value = "/Anime")
+@RestController
+@RequestMapping("/anime")
 @Tag(name = "api-anime")
 public class AnimeController {
-    @Autowired
-    AnimeController animeController;
 
     @Autowired
-    AnimeService animeService;
+    private AnimeService animeService;
 
+    @Operation(summary = "Cria um novo anime")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Anime cadastrado com sucesso",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = AnimeResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Atributos informados são inválidos",
+                    content = @Content(schema = @Schema()))
+    })
+    @PostMapping
+    public ResponseEntity<AnimeResponse> createAnime(@Valid @RequestBody AnimeRequest animeRequest) {
+        AnimeResponse response = animeService.saveAnime(animeRequest);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
 
+    @Operation(summary = "Retorna uma lista de animes")
+    @GetMapping
+    public ResponseEntity<Page<AnimeResponse>> readAnimes(@RequestParam(defaultValue = "0") Integer page) {
+        Pageable pageable = PageRequest.of(page, 2, Sort.by("titulo").ascending());
+        Page<AnimeResponse> responsePage = animeService.findAll(pageable);
+        return ResponseEntity.ok(responsePage);
+    }
+
+    @Operation(summary = "Retorna um anime por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Anime encontrado com sucesso",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = AnimeResponse.class))}),
+            @ApiResponse(responseCode = "404", description = "Anime não encontrado",
+                    content = @Content(schema = @Schema()))
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity<AnimeResponse> readAnimeById(@PathVariable Long id) {
+        Optional<Anime> anime = animeService.findById(id);
+        return anime
+                .map(a -> ResponseEntity.ok(animeService.entityToResponse(a)))
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

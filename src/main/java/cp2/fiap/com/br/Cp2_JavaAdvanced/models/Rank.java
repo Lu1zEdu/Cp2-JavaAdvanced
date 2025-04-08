@@ -1,12 +1,36 @@
 package cp2.fiap.com.br.Cp2_JavaAdvanced.models;
 
-import jakarta.persistence.Embeddable;
+import cp2.fiap.com.br.Cp2_JavaAdvanced.dto.RankRequest;
+import jakarta.persistence.*;
 
-@Embeddable
+@Entity
 public class Rank {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
     private int NotaGeral;
     private int NotaUsuario;
     private String Comentario;
+
+    public Rank(){
+
+    }
+
+    public Rank(Long id, int notaGeral, int notaUsuario, String comentario) {
+        Id = id;
+        NotaGeral = notaGeral;
+        NotaUsuario = notaUsuario;
+        Comentario = comentario;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
 
     public int getNotaGeral() {
         return NotaGeral;

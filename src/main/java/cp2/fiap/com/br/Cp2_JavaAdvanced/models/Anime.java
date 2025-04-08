@@ -12,59 +12,48 @@ import java.util.List;
 
 @Entity
 public class Anime {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
-    @NotBlank
     private int Temporada;
 
-    @Size(min = 3,max = 200)
-    @NotBlank
     private String Titulo;
-    @Size(min = 2,max = 3000)
-    @NotBlank
     private String descricao;
 
-    @NotNull
-    private LocalDate DataDeLançamento;
-    @NotNull
+    private LocalDate DataDeLancamento;
     private LocalDate DataDeTermino;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private TypeStudio studio;
-    @NotNull
     @Enumerated(EnumType.STRING)
     private StatusAnime status;
 
-    @NotNull
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private List<TypeGenero> generoList;
 
-    @NotNull
-    @Embedded
+    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL)
     private Episodios episodios;
 
-    @NotNull
-    @Embedded
+    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL)
     private Season seasonal;
 
-    @NotNull
-    @Embedded
+    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL)
     private Rank rank;
 
     public Anime() {
     }
 
-    public Anime(Long id, int temporada, String titulo, String descricao, LocalDate dataDeLançamento, LocalDate dataDeTermino, TypeStudio studio, StatusAnime status, List<TypeGenero> generoList, Episodios episodios, Season seasonal, Rank rank) {
-        this.id = id;
-        Temporada = temporada;
-        Titulo = titulo;
+    public Anime(int temporada, String titulo, String descricao, LocalDate dataDeLancamento,
+                 LocalDate dataDeTermino, TypeStudio studio, StatusAnime status,
+                 List<TypeGenero> generoList, Episodios episodios, Season seasonal, Rank rank) {
+        this.Temporada = temporada;
+        this.Titulo = titulo;
         this.descricao = descricao;
-        DataDeLançamento = dataDeLançamento;
-        DataDeTermino = dataDeTermino;
+        this.DataDeLancamento = dataDeLancamento;
+        this.DataDeTermino = dataDeTermino;
         this.studio = studio;
         this.status = status;
         this.generoList = generoList;
@@ -74,11 +63,11 @@ public class Anime {
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public int getTemporada() {
@@ -105,12 +94,12 @@ public class Anime {
         this.descricao = descricao;
     }
 
-    public LocalDate getDataDeLançamento() {
-        return DataDeLançamento;
+    public LocalDate getDataDeLancamento() {
+        return DataDeLancamento;
     }
 
-    public void setDataDeLançamento(LocalDate dataDeLançamento) {
-        DataDeLançamento = dataDeLançamento;
+    public void setDataDeLancamento(LocalDate dataDeLancamento) {
+        DataDeLancamento = dataDeLancamento;
     }
 
     public LocalDate getDataDeTermino() {
