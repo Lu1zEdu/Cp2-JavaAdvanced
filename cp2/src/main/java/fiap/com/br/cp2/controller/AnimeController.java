@@ -54,6 +54,7 @@ public class AnimeController {
         return ResponseEntity.ok(responsePage);
     }
 
+
     @Operation(summary = "Retorna um anime por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Anime encontrado com sucesso",

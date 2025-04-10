@@ -46,11 +46,14 @@ public class AnimeService {
         anime.setTypeStudio(dto.getStudio());
         anime.setStatusAnime(dto.getStatus());
         anime.setGenero(dto.getGenero());
+        anime.setTypeSeason(dto.getTypeSeason());
         return anime;
     }
 
     // Converte a entidade em DTO (response)
     public AnimeResponse entityToResponse(Anime anime) {
+
+        System.out.println("Convertendo anime: " + anime.getTitulo());
         return new AnimeResponse(
                 anime.getId(),
                 anime.getTitulo(),
@@ -64,4 +67,5 @@ public class AnimeService {
                 anime.getTypeSeason()
         );
     }
+
 }

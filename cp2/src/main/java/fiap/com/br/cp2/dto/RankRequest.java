@@ -8,11 +8,9 @@ import jakarta.validation.constraints.Size;
 public class RankRequest {
     @Min(value = 1, message = "A nota deve ser no mínimo 1")
     @Max(value = 5, message = "A nota deve ser no máximo 5")
-    @NotBlank(message = "A nota Geral é obrigatória")
     private int NotaGeral;
     @Min(value = 1, message = "A nota deve ser no mínimo 1")
     @Max(value = 5, message = "A nota deve ser no máximo 5")
-    @NotBlank(message = "A nota Geral é obrigatória")
     private int NotaUsuario;
     @Size(min = 2,max = 2000,message = "Deve ter no mínimo 2 e no máximo 2000 caracteres")
     @NotBlank(message = "O comentário é obrigatória")

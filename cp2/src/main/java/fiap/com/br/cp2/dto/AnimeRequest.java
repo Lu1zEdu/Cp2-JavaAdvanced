@@ -17,15 +17,14 @@ public class AnimeRequest {
 
     @Max(value = 100,message = "A quantidade máxima de temporadas é de 100")
     @Min(value = 1,message = "A quantidade mínima de temporadas é 1")
-    @NotBlank(message = "A quantidades de temporadas é obrigatório")
     private int Temporada;
 
     @Size(min = 2,max = 3000, message = "A descrição deve ter no mínimo 2 caracteres e no máximo 3000")
     @NotBlank(message = "A descrição é obrigatória")
-    private String descricao;
+    private String Descricao;
 
     @Past(message = "A data inserida deve estar no passado")
-    @NotBlank(message = "A data de lançamento é obrigatória")
+    @NotNull(message = "A data de lançamento é obrigatória")
     private LocalDate DataDeLancamento;
 
     @PastOrPresent(message = "A data inserida deve estar no passado ou presente")
@@ -33,17 +32,19 @@ public class AnimeRequest {
     private LocalDate DataDeTermino;
 
     @NotNull(message = "O estúdio é obrigatório")
-    private TypeStudio studio;
+    private TypeStudio Studio;
 
     @NotNull(message = "O status do anime é obrigatório")
-    private StatusAnime status;
+    private StatusAnime Status;
 
     @NotNull(message = "O genero do anime é obrigatório")
-    private TypeGenero genero;
+    private TypeGenero Genero;
 
     @NotNull(message = "O genero do anime é obrigatório")
-    private TypeSeason typeSeason;
+    private TypeSeason TypeSeason;
 
+    @NotNull(message = "O rank do anime é obrigatório")
+    private RankRequest Rank;
 
     public String getTitulo() {
         return Titulo;
@@ -62,11 +63,11 @@ public class AnimeRequest {
     }
 
     public String getDescricao() {
-        return descricao;
+        return Descricao;
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        Descricao = descricao;
     }
 
     public LocalDate getDataDeLancamento() {
@@ -86,27 +87,42 @@ public class AnimeRequest {
     }
 
     public TypeStudio getStudio() {
-        return studio;
+        return Studio;
     }
 
     public void setStudio(TypeStudio studio) {
-        this.studio = studio;
+        Studio = studio;
     }
 
     public StatusAnime getStatus() {
-        return status;
+        return Status;
     }
 
     public void setStatus(StatusAnime status) {
-        this.status = status;
+        Status = status;
     }
 
     public TypeGenero getGenero() {
-        return genero;
+        return Genero;
     }
 
     public void setGenero(TypeGenero genero) {
-        this.genero = genero;
+        Genero = genero;
     }
 
+    public fiap.com.br.cp2.models.TypeSeason getTypeSeason() {
+        return TypeSeason;
+    }
+
+    public void setTypeSeason(fiap.com.br.cp2.models.TypeSeason typeSeason) {
+        TypeSeason = typeSeason;
+    }
+
+    public RankRequest getRank() {
+        return Rank;
+    }
+
+    public void setRank(RankRequest rank) {
+        Rank = rank;
+    }
 }

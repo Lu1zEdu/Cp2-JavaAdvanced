@@ -10,15 +10,15 @@ import java.util.List;
 public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
-    private int Temporada;
+    private int temporada;
 
-    private String Titulo;
+    private String titulo;
     private String descricao;
 
-    private LocalDate DataDeLancamento;
-    private LocalDate DataDeTermino;
+    private LocalDate dataDeLancamento;
+    private LocalDate dataDeTermino;
 
     private TypeGenero genero;
     private TypeSeason typeSeason;
@@ -31,12 +31,12 @@ public class Anime {
     private Rank rank;
 
     public Anime(Long id, int temporada, String titulo, String descricao, LocalDate dataDeLancamento, LocalDate dataDeTermino, TypeGenero genero, TypeSeason typeSeason, TypeStudio typeStudio, StatusAnime statusAnime, Episodios episodios, Rank rank) {
-        Id = id;
-        Temporada = temporada;
-        Titulo = titulo;
+        this.id = id;
+        this.temporada = temporada;
+        this.titulo = titulo;
         this.descricao = descricao;
-        DataDeLancamento = dataDeLancamento;
-        DataDeTermino = dataDeTermino;
+        this.dataDeLancamento = dataDeLancamento;
+        this.dataDeTermino = dataDeTermino;
         this.genero = genero;
         this.typeSeason = typeSeason;
         this.typeStudio = typeStudio;
@@ -49,27 +49,27 @@ public class Anime {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public int getTemporada() {
-        return Temporada;
+        return temporada;
     }
 
     public void setTemporada(int temporada) {
-        Temporada = temporada;
+        this.temporada = temporada;
     }
 
     public String getTitulo() {
-        return Titulo;
+        return titulo;
     }
 
     public void setTitulo(String titulo) {
-        Titulo = titulo;
+        this.titulo = titulo;
     }
 
     public String getDescricao() {
@@ -81,19 +81,19 @@ public class Anime {
     }
 
     public LocalDate getDataDeLancamento() {
-        return DataDeLancamento;
+        return dataDeLancamento;
     }
 
     public void setDataDeLancamento(LocalDate dataDeLancamento) {
-        DataDeLancamento = dataDeLancamento;
+        this.dataDeLancamento = dataDeLancamento;
     }
 
     public LocalDate getDataDeTermino() {
-        return DataDeTermino;
+        return dataDeTermino;
     }
 
     public void setDataDeTermino(LocalDate dataDeTermino) {
-        DataDeTermino = dataDeTermino;
+        this.dataDeTermino = dataDeTermino;
     }
 
     public TypeGenero getGenero() {
@@ -126,5 +126,21 @@ public class Anime {
 
     public void setStatusAnime(StatusAnime statusAnime) {
         this.statusAnime = statusAnime;
+    }
+
+    public Episodios getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(Episodios episodios) {
+        this.episodios = episodios;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
     }
 }
