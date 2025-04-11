@@ -27,6 +27,12 @@
   }
 }
 
+{
+"id": 1,
+"email": "RM555213@fiap.com.br",
+"idade": 20,
+"nome": "Luiz"
+}
 
 
 http://localhost:8080/swagger-ui/index.html
