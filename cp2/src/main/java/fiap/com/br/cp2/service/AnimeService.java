@@ -33,7 +33,6 @@ public class AnimeService {
         return animeRepository.findById(id);
     }
 
-    // Converte o DTO (request) em entidade
     public Anime animeToEntity(AnimeRequest dto) {
         Anime anime = new Anime();
         anime.setTitulo(dto.getTitulo());

@@ -1,9 +1,6 @@
 package fiap.com.br.cp2.dto;
 
-import fiap.com.br.cp2.models.StatusAnime;
-import fiap.com.br.cp2.models.TypeGenero;
-import fiap.com.br.cp2.models.TypeSeason;
-import fiap.com.br.cp2.models.TypeStudio;
+import fiap.com.br.cp2.models.*;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -44,7 +41,7 @@ public class AnimeRequest {
     private TypeSeason TypeSeason;
 
     @NotNull(message = "O rank do anime é obrigatório")
-    private RankRequest Rank;
+    private Rank Rank;
 
     public String getTitulo() {
         return Titulo;
@@ -118,11 +115,11 @@ public class AnimeRequest {
         TypeSeason = typeSeason;
     }
 
-    public RankRequest getRank() {
+    public Rank getRank() {
         return Rank;
     }
 
-    public void setRank(RankRequest rank) {
-        Rank = rank;
+    public void setRank(Rank rank) {
+        this.Rank = rank;
     }
 }
