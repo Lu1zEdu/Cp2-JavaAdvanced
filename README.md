@@ -6,6 +6,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ### Solo Leveling
 
+````
 {
   "titulo": "Solo Leveling",
   "temporada": 1,
@@ -35,7 +36,11 @@ http://localhost:8080/swagger-ui/index.html
   }
 }
 
+````
+
 ### Attack on Titan
+
+```
 
 {
   "titulo": "Attack on Titan",
@@ -65,23 +70,28 @@ http://localhost:8080/swagger-ui/index.html
     "comentario": "Obra-prima! Enredo incrível e reviravoltas chocantes."
   }
 }
+````
 
 # Exemplos de usuários
 
 ### Luiz 
 
+```
 {
 "id": 1,
 "email": "RM555213@fiap.com.br",
 "idade": 20,
 "nome": "Luiz"
 }
+````
 
 ### Erick
 
+```
 {
   "id": 1,
   "email": "RM556862@fiap.com.br",
   "idade": 18,
   "nome": "Erick"
 }
+````
