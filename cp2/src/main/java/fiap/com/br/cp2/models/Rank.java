@@ -11,6 +11,7 @@ public class Rank {
     private int NotaUsuario;
     private String Comentario;
 
+
     public Rank(Long idRank, int notaGeral, int notaUsuario, String comentario) {
         IdRank = idRank;
         NotaGeral = notaGeral;

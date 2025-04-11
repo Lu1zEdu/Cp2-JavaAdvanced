@@ -4,6 +4,7 @@ package fiap.com.br.cp2.controller;
 import fiap.com.br.cp2.dto.AnimeRequest;
 import fiap.com.br.cp2.dto.AnimeResponse;
 import fiap.com.br.cp2.models.Anime;
+import fiap.com.br.cp2.models.Rank;
 import fiap.com.br.cp2.service.AnimeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -71,5 +72,21 @@ public class AnimeController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Atualiza um Anime existente")
+    @PutMapping("/{id}")
+    public ResponseEntity<Anime> updateAnime(@PathVariable Long id, @Valid @RequestBody Anime animeAtualizado) {
+        try {
+            Anime updateAnime = animeService.updateAnime(id, animeAtualizado);
+            return ResponseEntity.ok(updateAnime);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
+    @Operation(summary = "Deleta um Rank por ID")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAnime(@PathVariable Long id) {
+        animeService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -4,6 +4,7 @@ import fiap.com.br.cp2.controller.AnimeController;
 import fiap.com.br.cp2.dto.AnimeRequest;
 import fiap.com.br.cp2.dto.AnimeResponse;
 import fiap.com.br.cp2.models.Anime;
+import fiap.com.br.cp2.models.Rank;
 import fiap.com.br.cp2.repository.AnimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,19 +19,16 @@ public class AnimeService {
     @Autowired
     private AnimeRepository animeRepository;
 
-    // Salva um novo anime no banco e retorna a resposta formatada
     public AnimeResponse saveAnime(AnimeRequest request) {
         Anime anime = animeToEntity(request);
         Anime animeSalvo = animeRepository.save(anime);
         return entityToResponse(animeSalvo);
     }
 
-    // Retorna todos os animes com paginação
     public Page<AnimeResponse> findAll(Pageable pageable) {
         return animeRepository.findAll(pageable).map(this::entityToResponse);
     }
 
-    // Busca um anime pelo ID
     public Optional<Anime> findById(Long id) {
         return animeRepository.findById(id);
     }
@@ -50,7 +48,6 @@ public class AnimeService {
         return anime;
     }
 
-    // Converte a entidade em DTO (response)
     public AnimeResponse entityToResponse(Anime anime) {
 
         System.out.println("Convertendo anime: " + anime.getTitulo());
@@ -67,5 +64,27 @@ public class AnimeService {
                 anime.getTypeSeason()
         );
     }
+
+    public Anime updateAnime(Long id, Anime animeAtualizado) {
+        Optional<Anime> optionalAnime = animeRepository.findById(id);
+        if (optionalAnime.isPresent()) {
+            Anime anime = optionalAnime.get();
+            anime.setTitulo(animeAtualizado.getTitulo());
+            anime.setTemporada(animeAtualizado.getTemporada());
+            anime.setDescricao(animeAtualizado.getDescricao());
+            anime.setDataDeLancamento(animeAtualizado.getDataDeLancamento());
+            anime.setDataDeTermino(animeAtualizado.getDataDeTermino());
+            anime.setTypeStudio(animeAtualizado.getTypeStudio());
+            anime.setStatusAnime(animeAtualizado.getStatusAnime());
+            anime.setGenero(animeAtualizado.getGenero());
+            anime.setTypeSeason(animeAtualizado.getTypeSeason());
+
+            return animeRepository.save(anime);
+        } else {
+            throw new RuntimeException("Rank não encontrado com ID: " + id);
+        }
+    }
+
+    public void deleteById(Long id){animeRepository.deleteById(id);}
 
 }

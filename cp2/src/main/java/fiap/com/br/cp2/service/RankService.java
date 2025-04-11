@@ -15,27 +15,22 @@ public class RankService {
     @Autowired
     private RankRepository rankRepository;
 
-    // Salvar um novo Rank
     public Rank saveRank(Rank rank) {
         return rankRepository.save(rank);
     }
 
-    // Buscar todos os Ranks com paginação
     public Page<Rank> findAll(Pageable pageable) {
         return rankRepository.findAll(pageable);
     }
 
-    // Buscar Rank por ID
     public Optional<Rank> findById(Long id) {
         return rankRepository.findById(id);
     }
 
-    // Deletar Rank por ID
     public void deleteById(Long id) {
         rankRepository.deleteById(id);
     }
 
-    // Atualizar Rank existente
     public Rank updateRank(Long id, Rank rankAtualizado) {
         Optional<Rank> optionalRank = rankRepository.findById(id);
         if (optionalRank.isPresent()) {
