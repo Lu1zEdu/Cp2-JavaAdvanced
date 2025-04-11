@@ -1,4 +1,11 @@
----
+# Link do Swagger
+
+http://localhost:8080/swagger-ui/index.html
+
+# Exemplos de Anime para cadastro
+
+### Solo Leveling
+
 {
   "titulo": "Solo Leveling",
   "temporada": 1,
@@ -27,21 +34,9 @@
     "comentario": "Anime incrível, animação top e trilha sonora épica!"
   }
 }
----
-{
-"id": 1,
-"email": "RM555213@fiap.com.br",
-"idade": 20,
-"nome": "Luiz"
-}
----
-{
-  "id": 1,
-  "email": "RM556862@fiap.com.br",
-  "idade": 18,
-  "nome": "Erick"
-}
----
+
+### Attack on Titan
+
 {
   "titulo": "Attack on Titan",
   "temporada": 4,
@@ -71,4 +66,22 @@
   }
 }
 
-http://localhost:8080/swagger-ui/index.html
+# Exemplos de usuários
+
+### Luiz 
+
+{
+"id": 1,
+"email": "RM555213@fiap.com.br",
+"idade": 20,
+"nome": "Luiz"
+}
+
+### Erick
+
+{
+  "id": 1,
+  "email": "RM556862@fiap.com.br",
+  "idade": 18,
+  "nome": "Erick"
+}
